@@ -161,7 +161,7 @@ public class DraggerView extends FrameLayout {
    */
   @Override public boolean onInterceptTouchEvent(MotionEvent ev) {
     if (!isEnabled() || !canSlide()) {
-      return true;
+      return false;
     }
     final int action = MotionEventCompat.getActionMasked(ev);
     switch (action) {
@@ -203,7 +203,7 @@ public class DraggerView extends FrameLayout {
       return isViewHit(dragView, (int) ev.getX(), (int) ev.getY())
               || isViewHit(shadowView, (int) ev.getX(), (int) ev.getY());
     } else {
-      return false;
+      return super.onTouchEvent(ev);
     }
   }
 
