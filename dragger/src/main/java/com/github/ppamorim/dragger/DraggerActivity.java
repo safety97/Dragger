@@ -27,6 +27,7 @@ public class DraggerActivity extends BaseDraggerActivity {
     configDraggerView();
     configViews(layoutResID);
     super.setContentView(draggerPanel);
+    setSlideEnabled(false);
   }
 
   @Override public void onBackPressed() {

@@ -52,7 +52,7 @@ public class ActivityListActivity extends DraggerActivity {
     new ObservableScrollViewCallbacks() {
       @Override public void onScrollChanged(int scrollY, boolean firstScroll,
           boolean dragging) {
-        setSlideEnabled(scrollY == 0);
+        setSlideEnabled(false);
       }
       @Override public void onDownMotionEvent() { }
       @Override public void onUpOrCancelMotionEvent(ScrollState scrollState) { }

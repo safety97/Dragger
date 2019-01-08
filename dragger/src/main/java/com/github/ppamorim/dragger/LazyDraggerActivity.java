@@ -30,6 +30,7 @@ public class LazyDraggerActivity extends BaseDraggerActivity {
     configDraggerView();
     configViews(layoutResID);
     super.setContentView(lazyDraggerPanel);
+    setSlideEnabled(false);
   }
 
   @Override public void onBackPressed() {

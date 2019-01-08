@@ -161,7 +161,7 @@ public class DraggerView extends FrameLayout {
    */
   @Override public boolean onInterceptTouchEvent(MotionEvent ev) {
     if (!isEnabled() || !canSlide()) {
-      return false;
+      return true;
     }
     final int action = MotionEventCompat.getActionMasked(ev);
     switch (action) {
@@ -190,6 +190,7 @@ public class DraggerView extends FrameLayout {
    * @return Touched area is a valid position.
    */
   @Override public boolean onTouchEvent(MotionEvent ev) {
+
     int actionMasked = MotionEventCompat.getActionMasked(ev);
     if ((actionMasked & MotionEventCompat.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
       activePointerId = MotionEventCompat.getPointerId(ev, actionMasked);
@@ -197,9 +198,13 @@ public class DraggerView extends FrameLayout {
     if (activePointerId == INVALID_POINTER) {
       return false;
     }
-    dragHelper.processTouchEvent(ev);
-    return isViewHit(dragView, (int) ev.getX(), (int) ev.getY())
-        || isViewHit(shadowView, (int) ev.getX(), (int) ev.getY());
+    if (canSlide()) {
+      dragHelper.processTouchEvent(ev);
+      return isViewHit(dragView, (int) ev.getX(), (int) ev.getY())
+              || isViewHit(shadowView, (int) ev.getX(), (int) ev.getY());
+    } else {
+      return false;
+    }
   }
 
   /**
